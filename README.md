@@ -63,4 +63,6 @@ go build .
 - [ ] 通过快捷指令或其他方式实现iOS和Android的剪贴板共享
 - [ ] 加入类似于AirDrop的非原生实现，支持文件传输
 - [ ] English Documentation Support
+- [ ] 加入GUI（大概率通过网页形式）支持
+- [ ] 创建一个云端服务，免去自己搭建服务器的麻烦
 - [ ] ...
