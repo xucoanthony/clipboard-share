@@ -1,6 +1,6 @@
 {
   "device_name": "anthony's macbook pro",
-  "update_frequency_second": 5,
+  "update_frequency_second": 1,
   "remote_server": {
     "host": "127.0.0.1",
     "port": 8080

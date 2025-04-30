@@ -11,7 +11,7 @@ import (
 
 func main() {
 	// read the configuration file config.json
-	configFile, err := os.Open("client/config.json")
+	configFile, err := os.Open("config.json")
 	if err != nil {
 		fmt.Println("[Error] Failed to open config.json: ", err)
 		return

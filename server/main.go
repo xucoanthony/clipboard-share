@@ -8,7 +8,7 @@ func main() {
 
 	println("start")
 
-	// 设置 Gin 的运行模式为 Release 模式
+	// Set the Gin mode to release mode
 	gin.SetMode(gin.ReleaseMode)
 
 	var text string
@@ -17,14 +17,14 @@ func main() {
 	router := gin.Default()
 
 	router.GET("/", func(c *gin.Context) {
-		// 处理请求 获取参数
+		// Hello World
 		c.JSON(200, gin.H{
 			"message": "You've successfully created the Clipboard-Share Server",
 		})
 	})
 
+	// Set the clipboard content
 	router.POST("/setClipboard", func(c *gin.Context) {
-		// 处理请求 获取参数
 		var postData map[string]interface{}
 		if err := c.ShouldBind(&postData); err != nil {
 			return
@@ -47,6 +47,7 @@ func main() {
 		return
 	})
 
+	// Get the clipboard content
 	router.GET("/getClipboard", func(c *gin.Context) {
 
 		c.JSON(200, gin.H{
@@ -57,6 +58,8 @@ func main() {
 		return
 	})
 
-	_ = router.Run() // 监听并在 0.0.0.0:8080 上启动服务
+	//Start the server on port 8080, you can change it to any port you want like below:
+	//_ = router.Run(":8080")
+	_ = router.Run()
 
 }
