@@ -9,11 +9,32 @@ import (
 	"time"
 )
 
+// start sample : .\client.exe -c config.json
 func main() {
+
+	// read the coming arguments
+	if len(os.Args) < 2 {
+		fmt.Println("[Error] Please provide the config file path")
+		return
+	} else {
+		if os.Args[1] != "-c" {
+			fmt.Println("[Error] Invalid argument, please use -c to specify the config file")
+			return
+		}
+		if len(os.Args) < 3 {
+			fmt.Println("[Error] Please provide the config file path")
+			return
+		}
+		if os.Args[2] == "" {
+			fmt.Println("[Error] Please provide the config file path")
+			return
+		}
+	}
+
 	// read the configuration file config.json
-	configFile, err := os.Open("config.json")
+	configFile, err := os.Open(os.Args[2])
 	if err != nil {
-		fmt.Println("[Error] Failed to open config.json: ", err)
+		fmt.Println("[Error] Failed to open config files: ", err)
 		return
 	}
 	defer func(configFile *os.File) {
@@ -35,7 +56,7 @@ func main() {
 	updateFrequency := config.UpdateFrequencySecond
 	remoteServerHost := config.RemoteServer.Host
 	remoteServerPort := config.RemoteServer.Port
-	remoteUrl := fmt.Sprintf("http://%s:%d", remoteServerHost, remoteServerPort)
+	remoteUrl := fmt.Sprintf("%s:%d", remoteServerHost, remoteServerPort)
 
 	fmt.Println("[Info] Device Name:", deviceName)
 	fmt.Println("[Info] Update Frequency:", updateFrequency, "seconds")

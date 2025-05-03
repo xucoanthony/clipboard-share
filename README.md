@@ -31,15 +31,23 @@ go build .
 ### 运行服务端
 ```bash
 # 运行服务端（Mac/Linux）
-./server
+./server # 默认使用8080端口
+./server -p 8081 # 自定义端口
 # 运行服务端（Windows）
-双击打开server.exe
+.\server.exe # 默认使用8080端口
+.\server.exe -p 8081 # 自定义端口
 # 当前服务器没有配置选项，默认运行在8080端口，如果需要修改端口，请在代码中修改，再重新编译
 ```
 
 ### 运行客户端
-- 参考运行服务器，需要保持client的二进制文件与config.json在同一目录下，这会在后续的版本中修改路径问题
-- 请注意，目前的版本不支持自定义配置文件名和路径，config.json必须与client在同一目录下
+```bash
+# 运行客户端（Mac/Linux）
+./client -c config.json # config.json为client程序所在目录的相对路径，或者config.json文件的绝对路径
+./client -c /xxx/xxx/xxx/client/config.json # config.json为client程序所在目录的相对路径，或者config.json文件的绝对路径
+# 运行客户端（Windows）
+.\client.exe -c config.json # config.json为client程序所在目录的相对路径，或者config.json文件的绝对路径
+.\client.exe -c /xxx/xxx/xxx/client/config.json # config.json为client程序所在目录的相对路径，或者config.json文件的绝对路径
+```
 
 ## 客户端配置文件
 ```json
@@ -47,7 +55,7 @@ go build .
   "device_name": "anthony's macbook pro", //设备名称
   "update_frequency_second": 1, //向服务器请求的频率，单位为秒（同时也是客户端读取你剪贴板观察变化的频率）
   "remote_server": {
-    "host": "127.0.0.1", //服务器地址，可以是内网/公网ip，可以是域名，可以使用localhost，但请不要加上http://
+    "host": "http://127.0.0.1", //服务器地址，可以是内网/公网ip，可以是域名，可以使用localhost，请一定要加上http://
     "port": 8080 //服务器端口，虽然这里支持配置，但是你需要在代码中修改server的端口，后续版本会升级
   }
 }
@@ -60,12 +68,12 @@ https://www.icloud.com/shortcuts/7c1f120de1f94c20a16a821084e05fac
 
 ## 未来的计划
 ### 一般计划
-- [ ] 支持自定义配置文件名和路径
-- [ ] 支持自定义服务器端口
-- [ ] 支持自定义服务器地址
+- [ ] ~~支持自定义配置文件名和路径~~ 已完成
+- [ ] ~~支持自定义服务器端口~~ 已完成
+- [ ] ~~支持自定义服务器地址~~ 合并入https计划
 - [ ] 加入https支持（目前的版本是http，你可以使用nginx等反向代理工具来实现https）
 ### 更宏伟的计划
-- [ ] 通过快捷指令或其他方式实现iOS和Android的剪贴板共享
+- [ ] ~~通过快捷指令或其他方式实现iOS和Android的剪贴板共享~~ 已实现
 - [ ] 加入类似于AirDrop的非原生实现，支持文件传输
 - [ ] English Documentation Support
 - [ ] 加入GUI（大概率通过网页形式）支持

@@ -1,12 +1,36 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
+	"os"
 )
 
+// start sample : .\server.exe -p 8080
 func main() {
 
-	println("start")
+	// read the coming arguments
+	port := ":8080"
+	if len(os.Args) < 2 {
+		fmt.Println("[INFO] No port specified, using default port", port)
+	} else {
+
+		if os.Args[1] != "-p" {
+			fmt.Println("[Error] Invalid argument, please use -p to specify the port")
+			return
+		}
+		if len(os.Args) < 3 {
+			fmt.Println("[Error] Please provide the port")
+			return
+		}
+		if os.Args[2] == "" {
+			fmt.Println("[Error] Please provide the port")
+			return
+		}
+		port = ":" + os.Args[2]
+		fmt.Println("[INFO] Using port", port)
+
+	}
 
 	// Set the Gin mode to release mode
 	gin.SetMode(gin.ReleaseMode)
@@ -60,6 +84,6 @@ func main() {
 
 	//Start the server on port 8080, you can change it to any port you want like below:
 	//_ = router.Run(":8080")
-	_ = router.Run()
+	_ = router.Run(port)
 
 }
